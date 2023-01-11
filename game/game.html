@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game</title>
+ <link rel="stylesheet" href="game.css">
+</head>
+
+
+<script defer>
+  let scoreHight=0;
+ let currentscore=0;
+  let timeLeft=25;
+  score = 0;
+  multiplication=0;
+
+  //function onload
+  window.onload = function(){
+    scoreHight = localStorage.getItem("scoreHight")
+    document.getElementById("scoreHight").innerHTML="Hight Score  :" + scoreHight ;
+  }
+
+
+
+  function startGame(){
+
+    NextQustion()//opearation 0 * 0
+    document.getElementById("disable").disabled=true//stop click start ----- left
+  let timeDisplay=document.getElementById("timeDisplay");
+  timeDisplay.hidden=false;
+    time = setInterval(function(){
+  
+
+    timeLeft-=1
+    timeDisplay.innerHTML = "Time Left :" + timeLeft 
+
+  
+    
+    if(timeLeft == 0){
+      clearInterval(time)
+
+
+      document.getElementById("btn1").disabled=true;
+    document.getElementById("btn2").disabled=true;
+    document.getElementById("btn3").disabled=true;
+    document.getElementById("btn4").disabled=true;
+      
+
+    }
+    
+
+  },1000)
+  }
+   function NextQustion(){
+    opearationDiv=document.getElementById("opearation");
+
+     let firstNum = Math.ceil(Math.random()*12)//take number
+     let secondNum = Math.ceil(Math.random()*12)//take number
+    multiplication = firstNum * secondNum
+
+
+    opearationDiv.innerHTML=firstNum + "*" + secondNum
+
+     let=wrongAnsewer1 = Math.ceil(Math.random()*12) * Math.ceil(Math.random()*12)
+     let=wrongAnsewer2 = Math.ceil(Math.random()*12) * Math.ceil(Math.random()*12)
+     let=wrongAnsewer3 = Math.ceil(Math.random()*12) * Math.ceil(Math.random()*12)
+     let=wrongAnsewer4 = Math.ceil(Math.random()*12) * Math.ceil(Math.random()*12)
+
+    
+     document.getElementById("btn1").innerHTML = wrongAnsewer1
+    document.getElementById("btn2").innerHTML = wrongAnsewer2
+    document.getElementById("btn3").innerHTML = wrongAnsewer3
+    document.getElementById("btn4").innerHTML = wrongAnsewer4
+
+
+
+
+
+    let correctAnsewerIndex = Math.floor(Math.random()*4)+1//1 2 3 4 
+    correctAnsewerId = "btn" + correctAnsewerIndex;//mafhmtoch
+    document.getElementById(correctAnsewerId).innerHTML=multiplication
+
+  }
+function checkAnsawer(buttonIndex){
+  let answer=document.getElementById("btn"+ buttonIndex ).innerHTML ;
+  if(answer==multiplication) score+=1
+    
+  document.getElementById("currentscore").innerHTML="Current Score :" + score ;
+  
+  NextQustion()
+
+  if(score > scoreHight) scoreHight=score
+  localStorage.setItem("scoreHight",scoreHight)
+  document.getElementById("scoreHight").innerHTML="Hight Score  :" + scoreHight ;
+
+  
+  
+ 
+}
+ 
+
+</script>
+  
+
+
+
+
+
+
+
+
+
+
+
+<body> 
+  <div  id="scoreHight" class="s">Hight Score :0</div>
+  <div class="s" id="currentscore">Current Score :0</div>
+  <button id="disable" onclick="startGame()">START</button>
+  <div id="timeDisplay" hidden=true >Time Left :25</div>
+  <br>
+  what is the answer ?
+  <br>
+  <div class="big" id="opearation">0 * 0</div>
+  <br>
+  <button onclick="checkAnsawer(1)" id="btn1">0</button>
+  <button  onclick="checkAnsawer(2)" id="btn2">0</button>
+  <br>
+  <button  onclick="checkAnsawer(3)" id="btn3">0</button>
+  <button onclick="checkAnsawer(4)" id="btn4">0</button>
+
+</body>
+
+</html>

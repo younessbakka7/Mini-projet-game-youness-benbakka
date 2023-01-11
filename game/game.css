@@ -1,0 +1,35 @@
+body{
+  border: 1px solid black;
+  width:50%;
+  margin-left:auto ;
+  margin-right: auto;
+  text-align: center;
+  background-color: teal;
+  color: black;
+  margin-top: 60px;
+  padding-top: 50px;
+    padding-bottom: 50px;
+    
+}
+
+
+button{
+  border-radius: 10px;
+  font-size: 36px;
+  padding: 20px;
+}
+button:hover{
+box-shadow: 0 0 0 teal;
+}
+.big{
+  font-size: 36px;
+  padding: 20px;
+
+}
+.s{
+  
+  text-align: start;
+  margin: 0;
+  font-size: 30px;
+  color: white;
+}
